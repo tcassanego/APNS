@@ -226,7 +226,7 @@ module APNS
         ssl.close
         sock.close
       end
-    rescue Errno::ECONNABORTED, Errno::EPIPE, Errno::ECONNRESET
+    rescue Errno::ECONNABORTED, Errno::EPIPE, Errno::ECONNRESET, OpenSSL::SSL::SSLError
       if (retries += 1) < 5
         self.remove_connection(host, port)
         retry
