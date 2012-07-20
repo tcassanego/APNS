@@ -232,6 +232,7 @@ module APNS
         retry
       else
         # too-many retries, re-raise
+        self.remove_connection(host, port)
         raise
       end
     end
